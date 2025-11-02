@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resident Dashboard - AMS</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-home"></i> Resident Portal</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="resident-dashboard.html" class="nav-link active"><i class="fas fa-tachometer-alt"></i>
+                            Dashboard</a></li>
+                    <li><a href="resident-my-flat.html" class="nav-link"><i class="fas fa-building"></i> My Flat
+                            Info</a></li>
+                    <li><a href="resident-my-requests.html" class="nav-link"><i class="fas fa-clipboard-list"></i> My
+                            Service Requests</a></li>
+                    <li><a href="resident-request-service.html" class="nav-link"><i class="fas fa-tools"></i> Request
+                            Service</a></li>
+                    <li><a href="#" id="logoutBtn" class="nav-link logout"><i class="fas fa-sign-out-alt"></i>
+                            Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <h1>Resident Dashboard</h1>
+                <div class="user-info">
+                    <span id="welcomeMessage"></span>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <main class="content" id="mainContent">
+                <!-- Overview Cards Section -->
+                <section class="overview-section">
+                    <h2>Dashboard Overview</h2>
+                    <div class="cards-container">
+                        <div class="card">
+                            <h3><i class="fas fa-building"></i> Flat Information</h3>
+                            <p class="card-value" id="flatNumber">A-101</p>
+                            <div class="card-details">
+                                <div>Floor: 1st</div>
+                                <div>Area: 1200 sqft</div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h3><i class="fas fa-car"></i> Parking Slot</h3>
+                            <p class="card-value" id="parkingSlot">P-15</p>
+                            <div class="card-details">
+                                <div>Vehicle: KA-01-AB-1234</div>
+                                <div>Type: 4W</div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h3><i class="fas fa-tools"></i> Active Requests</h3>
+                            <p class="card-value" id="activeRequests">2</p>
+                            <div class="card-details">
+                                <div>1 Pending</div>
+                                <div>1 Working</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Quick Actions Section -->
+                <section class="quick-actions-section">
+                    <h2>Quick Actions</h2>
+                    <div class="quick-actions">
+                        <a href="resident-my-flat.html" class="quick-action-btn">
+                            <i class="fas fa-building"></i>
+                            <span>My Flat Info</span>
+                        </a>
+                        <a href="resident-my-requests.html" class="quick-action-btn">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>My Requests</span>
+                        </a>
+                        <a href="resident-request-service.html" class="quick-action-btn">
+                            <i class="fas fa-tools"></i>
+                            <span>Request Service</span>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Recent Activity Section -->
+<!--                <section class="recent-activity-section">-->
+<!--                    <h2>Recent Activity</h2>-->
+<!--                    <div class="recent-activity">-->
+<!--                        <div class="activity-item">-->
+<!--                            <div class="activity-icon">-->
+<!--                                <i class="fas fa-tools"></i>-->
+<!--                            </div>-->
+<!--                            <div class="activity-content">-->
+<!--                                <div class="activity-title">Service Request Submitted</div>-->
+<!--                                <div class="activity-time">Plumbing issue reported - 2 hours ago</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="activity-item">-->
+<!--                            <div class="activity-icon">-->
+<!--                                <i class="fas fa-check-circle"></i>-->
+<!--                            </div>-->
+<!--                            <div class="activity-content">-->
+<!--                                <div class="activity-title">Payment Received</div>-->
+<!--                                <div class="activity-time">Maintenance fee paid - 1 day ago</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="activity-item">-->
+<!--                            <div class="activity-icon">-->
+<!--                                <i class="fas fa-user-check"></i>-->
+<!--                            </div>-->
+<!--                            <div class="activity-content">-->
+<!--                                <div class="activity-title">Profile Updated</div>-->
+<!--                                <div class="activity-time">Contact information updated - 3 days ago</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </section>-->
+            </main>
+        </div>
+    </div>
+
+    <script src="js/resident-dashboard.js"></script>
+</body>
+
+</html>
