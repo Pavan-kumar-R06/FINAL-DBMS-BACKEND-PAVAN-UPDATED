@@ -25,7 +25,15 @@ const app = express();
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = path.dirname(__filename);
 
-app.use(cors());
+app.use(cors({
+    origin: [
+        "http://localhost:5000",
+        "http://127.0.0.1:5500", // local liveserver if you use it
+        "https://final-dbms-backend-pavan-updated.vercel.app"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
 app.use(express.json());
 
 // Serve frontend files
