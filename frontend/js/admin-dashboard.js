@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const API_URL =
   window.location.hostname === "localhost"
     ? "http://localhost:5000"
-    : "https://final-dbms-backend-pavan-updated-ds.vercel.app";
+    : "https://final-dbms-backend-pavan-updated.vercel.app";
     
 
 

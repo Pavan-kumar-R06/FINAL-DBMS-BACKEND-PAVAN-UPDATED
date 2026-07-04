@@ -2,7 +2,7 @@
 const API_URL =
   window.location.hostname === "localhost"
     ? "http://localhost:5000"
-    : "https://final-dbms-backend-pavan-updated-ds.vercel.app";
+    : "https://final-dbms-backend-pavan-updated.vercel.app";
 
 const apiUrl = `${API_URL}/api/owners`;
 const flatsApi = `${API_URL}/api/flats`;
