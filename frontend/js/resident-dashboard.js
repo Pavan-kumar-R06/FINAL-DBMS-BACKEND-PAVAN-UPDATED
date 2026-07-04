@@ -5,6 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const activeRequests = document.getElementById('activeRequests');
     const logoutButton = document.getElementById('logoutBtn'); 
 
+    const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://YOUR-RENDER-BACKEND.onrender.com";
+
     async function loadDashboard() {
         try {
             const residentId = localStorage.getItem('residentId');
@@ -13,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            const res = await fetch(`http://localhost:5000/api/resident/dashboard?ownerId=${residentId}`, {
+            const res = await fetch(`${API_URL}/api/resident/dashboard?ownerId=${residentId}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -80,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.removeItem('ownerId');
 
             try {
-                await fetch('http://localhost:5000/api/auth/logout', {
+                await fetch(`${API_URL}/api/auth/logout`, {
                     method: 'POST'
                 });
             } catch (err) {

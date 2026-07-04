@@ -4,6 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusFilter = document.getElementById('statusFilter');
     const refreshBtn = document.getElementById('refreshBtn');
 
+    const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://YOUR-RENDER-BACKEND.onrender.com";
+
     let assignedRequests = [];
     const staffId = localStorage.getItem('staffId');
 
@@ -16,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const status = statusFilter.value;
         try {
             const statusQuery = status ? `&status=${status}` : '';
-            const res = await fetch(`http://localhost:5000/api/staff/assigned-requests?staffId=${staffId}${statusQuery}`);
+            const res = await fetch(`${API_URL}/api/staff/assigned-requests?staffId=${staffId}${statusQuery}`);
             
             const data = await res.json();
             if (!res.ok) throw new Error(data.error || 'Failed to fetch requests');
@@ -59,7 +64,7 @@ if (logoutButton) {
             localStorage.removeItem('residentId');
             
             try {
-                await fetch('http://localhost:5000/api/auth/logout', {
+                await fetch(`${API_URL}/api/auth/logout`, {
                     method: 'POST'
                 });
             } catch (err) {

@@ -4,6 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusText = document.getElementById('statusText');
     const staffId = localStorage.getItem('staffId'); 
 
+        const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://YOUR-RENDER-BACKEND.onrender.com";
+
     async function loadProfile() {
         try {
             if (!staffId) {
@@ -11,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error('Staff ID missing in localStorage');
             }
 
-            const res = await fetch(`http://localhost:5000/api/staff/profile?staffId=${staffId}`);
+            const res = await fetch(`${API_URL}/api/staff/profile?staffId=${staffId}`);
             
             if (!res.ok) {
                 const errorData = await res.json();
@@ -43,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const newStatus = statusToggle.checked ? 'Active' : 'Inactive';
         try {
-            const res = await fetch('http://localhost:5000/api/staff/profile/status', {
+            const res = await fetch(`${API_URL}/api/staff/profile/status`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ staffId, status: newStatus }) 
@@ -78,7 +83,7 @@ if (logoutButton) {
             localStorage.removeItem('residentId');
             
             try {
-                await fetch('http://localhost:5000/api/auth/logout', {
+                await fetch(`${API_URL}/api/auth/logout`, {
                     method: 'POST'
                 });
             } catch (err) {

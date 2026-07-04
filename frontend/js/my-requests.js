@@ -4,6 +4,12 @@
     const statusFilter = document.getElementById('statusFilter');
     const refreshBtn = document.getElementById('refreshBtn');
 
+    const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://YOUR-RENDER-BACKEND.onrender.com";
+
+
     async function loadRequests() {
         try {
             requestsList.innerHTML = `
@@ -19,7 +25,7 @@
                 return;
             }
 
-            let url = `http://localhost:5000/api/resident/requests/${residentId}`;
+            let url = `${API_URL}/api/resident/requests/${residentId}`;
             if (statusFilter.value) url += `?status=${statusFilter.value}`;
 
             const res = await fetch(url);
@@ -69,7 +75,7 @@ if (logoutButton) {
             localStorage.removeItem('residentId');
             
             try {
-                await fetch('http://localhost:5000/api/auth/logout', {
+                await fetch(`${API_URL}/api/auth/logout`, {
                     method: 'POST'
                 });
             } catch (err) {

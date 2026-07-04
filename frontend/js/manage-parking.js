@@ -17,13 +17,19 @@ const logoutButton = document.getElementById('logoutBtn');
 
 const statusInput = document.getElementById('statusInput'); 
 
+const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://YOUR-RENDER-BACKEND.onrender.com";
+
+
 let editingSlotId = null;
 let deleteSlotId = null;
 let parkingSlots = [];
 
 async function loadFlats() {
     try {
-        const res = await fetch('http://localhost:5000/api/flats');
+        const res = await fetch(`${API_URL}/api/flats`);
         const flats = await res.json();
         flatSelect.innerHTML = `<option value="">Select Flat (Optional)</option>` +
             flats.map(f => `<option value="${f.flat_id}">${f.flat_number}</option>`).join('');
@@ -34,7 +40,7 @@ async function loadFlats() {
 
 async function loadParkingSlots() {
     try {
-        const res = await fetch('http://localhost:5000/api/parking');
+        const res = await fetch(`${API_URL}/api/parking`);
         parkingSlots = await res.json(); 
         displayParkingSlots(parkingSlots);
     } catch (err) {
@@ -96,7 +102,7 @@ parkingForm.addEventListener('submit', async e => {
         is_allocated: isAllocatedValue 
     };
     
-    const url = editingSlotId ? `http://localhost:5000/api/parking/${editingSlotId}` : 'http://localhost:5000/api/parking';
+    const url = editingSlotId ? `${API_URL}/api/parking/${editingSlotId}` : `${API_URL}/api/parking`;
     const method = editingSlotId ? 'PUT' : 'POST';
 
     try {
@@ -121,7 +127,7 @@ parkingForm.addEventListener('submit', async e => {
 
 async function openEditModal(id) {
     try {
-        const res = await fetch(`http://localhost:5000/api/parking/${id}`);
+        const res = await fetch(`${API_URL}/api/parking/${id}`);
         const slot = await res.json();
         
         editingSlotId = id;
@@ -151,7 +157,7 @@ cancelDeleteBtn.addEventListener('click', () => deleteModal.style.display = 'non
 confirmDeleteBtn.addEventListener('click', async () => {
     if (!deleteSlotId) return;
     try {
-        await fetch(`http://localhost:5000/api/parking/${deleteSlotId}`, { method: 'DELETE' });
+        await fetch(`${API_URL}/api/parking/${deleteSlotId}`, { method: 'DELETE' });
         deleteModal.style.display = 'none';
         loadParkingSlots();
     } catch (err) {
@@ -188,7 +194,7 @@ if (logoutButton) {
         localStorage.removeItem('residentId');
         
         try {
-            await fetch('http://localhost:5000/api/auth/logout', {
+            await fetch(`${API_URL}/api/auth/logout`, {
                 method: 'POST'
             });
         } catch (err) {

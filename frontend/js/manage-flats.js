@@ -1,8 +1,13 @@
 
 const logoutButton = document.getElementById('logoutBtn');
+const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://YOUR-RENDER-BACKEND.onrender.com";
 
-const apiUrl = 'http://localhost:5000/api/flats';
-const ownersApiUrl = 'http://localhost:5000/api/owners'; 
+    
+const apiUrl = `${API_URL}/api/flats`;
+const ownersApiUrl = `${API_URL}/api/owners`; 
 
 document.addEventListener('DOMContentLoaded', () => {
     loadFlats();
@@ -202,7 +207,7 @@ if (logoutButton) {
         localStorage.removeItem('residentId');
         
         try {
-            await fetch('http://localhost:5000/api/auth/logout', {
+            await fetch(`${API_URL}/api/auth/logout`, {
                 method: 'POST'
             });
         } catch (err) {

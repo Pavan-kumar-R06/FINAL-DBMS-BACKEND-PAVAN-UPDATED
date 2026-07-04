@@ -19,6 +19,13 @@ const deleteModal = document.getElementById("deleteModal");
 const closeDeleteModalBtn = deleteModal.querySelector(".close-btn"); 
 const cancelDeleteBtn = document.getElementById("cancelDeleteBtn");
 const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+
+const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://YOUR-RENDER-BACKEND.onrender.com";
+
+
 let toDeleteId = null; 
 
 let requests = [];
@@ -203,7 +210,7 @@ if (logoutButton) {
         localStorage.removeItem('residentId');
         
         try {
-            await fetch('http://localhost:5000/api/auth/logout', {
+            await fetch(`${API_URL}/api/auth/logout`, {
                 method: 'POST'
             });
         } catch (err) {

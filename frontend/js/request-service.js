@@ -7,6 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeSuccessModal = document.getElementById('closeSuccessModal');
     const okBtn = document.getElementById('okBtn');
 
+const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://YOUR-RENDER-BACKEND.onrender.com";
 
     serviceForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -33,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const res = await fetch('http://localhost:5000/api/resident/service-requests', {
+            const res = await fetch(`${API_URL}/api/resident/service-requests`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(requestData)
@@ -70,7 +74,7 @@ if (logoutButton) {
         localStorage.removeItem('ownerId'); // Optional: Clear this too, just in case
 
         try {
-            await fetch('http://localhost:5000/api/auth/logout', {
+            await fetch(`${API_URL}/api/auth/logout`, {
                 method: 'POST'
             });
         } catch (err) {

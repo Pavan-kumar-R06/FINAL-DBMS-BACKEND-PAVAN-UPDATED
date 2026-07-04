@@ -2,6 +2,11 @@ const flatDetailsContainer = document.querySelector('.flat-details');
 const parkingInfoContainer = document.querySelector('.parking-info');
     const logoutButton = document.getElementById('logoutBtn'); 
 
+    const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://YOUR-RENDER-BACKEND.onrender.com";
+
 async function loadFlatInfo() {
     try {
         const residentId = localStorage.getItem('residentId');
@@ -10,7 +15,7 @@ async function loadFlatInfo() {
             parkingInfoContainer.innerHTML = '';
             return;
         }
-        const res = await fetch(`http://localhost:5000/api/resident/my-flat/${residentId}`);
+        const res = await fetch(`${API_URL}/api/resident/my-flat/${residentId}`);
         if (!res.ok) {
             const errorData = await res.json();
             throw new Error(errorData.error || 'Failed to fetch flat info');
@@ -86,7 +91,7 @@ if (logoutButton) {
             localStorage.removeItem('residentId');
             
             try {
-                await fetch('http://localhost:5000/api/auth/logout', {
+                await fetch(`${API_URL}/api/auth/logout`, {
                     method: 'POST'
                 });
             } catch (err) {

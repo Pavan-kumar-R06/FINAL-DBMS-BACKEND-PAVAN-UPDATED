@@ -6,6 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const completedRequests = document.getElementById('completedRequests');
     const logoutButton = document.getElementById('logoutBtn'); 
     const staffId = localStorage.getItem('staffId');
+
+    const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://YOUR-RENDER-BACKEND.onrender.com";
+
     async function loadDashboard() {
         if (!staffId) {
             welcomeMessage.textContent = `Welcome, Guest. Please log in.`;
@@ -13,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         try {
-            const res = await fetch(`http://localhost:5000/api/staff/dashboard?staffId=${staffId}`, {
+            const res = await fetch(`${API_URL}/api/staff/dashboard?staffId=${staffId}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -47,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.removeItem('staffId');
 
             try {
-                await fetch('http://localhost:5000/api/auth/logout', {
+                await fetch(`${API_URL}/api/auth/logout`, {
                     method: 'POST'
                 });
             } catch (err) {

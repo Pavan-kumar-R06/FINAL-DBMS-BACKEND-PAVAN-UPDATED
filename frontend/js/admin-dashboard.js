@@ -14,9 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoutButton = document.getElementById('logoutBtn');
     const welcomeMessage = document.getElementById('welcomeMessage');
 
+    const API_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:5000"
+    : "https://YOUR-RENDER-BACKEND.onrender.com";
+
+
+
     async function loadDashboard() {
         try {
-            const res = await fetch('http://localhost:5000/api/admin-dashboard');
+            const res = await fetch(`${API_URL}/api/admin-dashboard`);
             
             if (!res.ok) {
                 const errorData = await res.json().catch(() => ({ error: 'Unknown server response' }));
@@ -105,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.removeItem('residentId');
             
             try {
-                await fetch('http://localhost:5000/api/auth/logout', {
+                await fetch(`${API_URL}/api/auth/logout`, {
                     method: 'POST'
                 });
             } catch (err) {
