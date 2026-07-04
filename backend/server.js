@@ -27,14 +27,14 @@ const __dirname = path.dirname(__filename);
 app.use(cors());
 app.use(express.json());
 
-// Serve frontend
+// Serve frontend files
 app.use(express.static(path.join(__dirname, "../frontend")));
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend/index.html"));
 });
 
-// Routes
+// API Routes
 app.use("/api/auth", authRouter);
 app.use("/api/flats", flatsRouter);
 app.use("/api/owners", ownersRouter);
@@ -59,8 +59,14 @@ app.use((req, res) => {
     });
 });
 
-const PORT = process.env.PORT || 5000;
+// Local Development Only
+if (process.env.NODE_ENV !== "production") {
+    const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+    app.listen(PORT, () => {
+        console.log(`Server running on http://localhost:${PORT}`);
+    });
+}
+
+// Export for Vercel
+export default app;
