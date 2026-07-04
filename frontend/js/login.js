@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
     const errorMessage = document.getElementById('errorMessage');
 
-    const API_URL =
-        window.location.hostname === "localhost"
-            ? "http://localhost:5000"
-            : "https://final-dbms-backend-pavan-updated.vercel.app";
+   const API_URL =
+    window.location.hostname === "localhost"
+        ? "http://localhost:5000"
+        : ""; // Empty string tells the browser to use the current origin
 
     loginForm.addEventListener('submit', async (e) => {
 

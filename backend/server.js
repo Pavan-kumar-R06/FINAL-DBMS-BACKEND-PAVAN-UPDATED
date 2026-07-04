@@ -26,14 +26,18 @@ const app = express();
 // const __dirname = path.dirname(__filename);
 
 app.use(cors({
-    origin: [
-        "http://localhost:5000",
-        "http://127.0.0.1:5500", // local liveserver if you use it
-        "https://final-dbms-backend-pavan-updated.vercel.app"
-    ],
+    origin: function (origin, callback) {
+        // Allow local development and any vercel.app domains
+        if (!origin || origin.startsWith("http://localhost") || origin.endsWith(".vercel.app")) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
+
 app.use(express.json());
 
 // Serve frontend files
