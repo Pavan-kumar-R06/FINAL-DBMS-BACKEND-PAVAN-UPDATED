@@ -53,6 +53,13 @@ app.use("/api/resident", residentServiceRouter);
 app.use("/api/resident/my-flat", residentFlatRouter);
 app.use("/api/account", accountRoutes);
 
+app.get("/api/test", (req, res) => {
+    res.json({
+        success: true,
+        message: "Backend is updated"
+    });
+});
+
 // 404 Route
 app.use((req, res) => {
     res.status(404).json({
