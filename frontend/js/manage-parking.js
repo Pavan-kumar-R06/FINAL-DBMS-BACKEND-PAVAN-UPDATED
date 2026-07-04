@@ -20,7 +20,7 @@ const statusInput = document.getElementById('statusInput');
 const API_URL =
   window.location.hostname === "localhost"
     ? "http://localhost:5000"
-    : "https://YOUR-RENDER-BACKEND.onrender.com";
+    : "https://final-dbms-backend-pavan-updated-ds.vercel.app";
 
 
 let editingSlotId = null;

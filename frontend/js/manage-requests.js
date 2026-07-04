@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:5000/api/requests";
+
 
 const requestsTableBody = document.getElementById("requestsTableBody");
 const statusFilter = document.getElementById("statusFilter");
@@ -23,9 +23,9 @@ const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
 const API_URL =
   window.location.hostname === "localhost"
     ? "http://localhost:5000"
-    : "https://YOUR-RENDER-BACKEND.onrender.com";
+    : "https://final-dbms-backend-pavan-updated-ds.vercel.app";
 
-
+const API_BASE = `${API_URL}/api/requests`;
 let toDeleteId = null; 
 
 let requests = [];
