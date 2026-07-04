@@ -232,3 +232,4 @@ if (!passwordRegex.test(newPassword)) {
 });
 
 export default router;
+
