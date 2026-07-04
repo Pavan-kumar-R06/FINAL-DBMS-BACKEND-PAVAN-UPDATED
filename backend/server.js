@@ -18,6 +18,7 @@ import residentDashboardRouter from "./routes/resident-dashboard.js";
 import residentRequestsRouter from "./routes/resident-my-requests.js";
 import residentServiceRouter from "./routes/resident-request-service.js";
 import residentFlatRouter from "./routes/resident-my-flat.js";
+import accountRoutes from "./routes/account.js";
 
 const app = express();
 
@@ -50,6 +51,7 @@ app.use("/api/resident", residentDashboardRouter);
 app.use("/api/resident/requests", residentRequestsRouter);
 app.use("/api/resident", residentServiceRouter);
 app.use("/api/resident/my-flat", residentFlatRouter);
+app.use("/api/account", accountRoutes);
 
 // 404 Route
 app.use((req, res) => {

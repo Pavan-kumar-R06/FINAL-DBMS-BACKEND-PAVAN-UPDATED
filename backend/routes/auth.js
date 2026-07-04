@@ -29,20 +29,58 @@ router.post("/login", async (req, res) => {
         if (role === "staff" && !user.staff_id) {
             return res.status(400).json({ message: "User role not linked to staff record" });
         }
-        const loginId =
-            role === "resident" ? user.owner_id :
-            role === "staff"    ? user.staff_id :
-                                  user.user_id;
+       
+let loginId;
+let name = "";
 
-        res.json({
-            message: "Login successful",
-            user: {
-                id: loginId,
-                username: user.username,
-                role: user.role
-            }
-        });
+if (role === "resident") {
 
+    loginId = user.owner_id;
+
+    const [owner] = await pool.query(
+        "SELECT ownerName FROM owner WHERE owner_id=?",
+        [user.owner_id]
+    );
+
+    name = owner.length ? owner[0].ownerName : "";
+
+}
+
+else if (role === "staff") {
+
+    loginId = user.staff_id;
+
+    const [staff] = await pool.query(
+        "SELECT staffName FROM staff WHERE staff_id=?",
+        [user.staff_id]
+    );
+
+    name = staff.length ? staff[0].staffName : "";
+
+}
+
+else {
+
+    loginId = user.user_id;
+
+    name = user.username;
+
+}
+
+res.json({
+
+    message: "Login successful",
+
+    user: {
+
+        id: loginId,
+        username: user.username,
+        role: user.role,
+        name: name
+
+    }
+
+});
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Server Error" });

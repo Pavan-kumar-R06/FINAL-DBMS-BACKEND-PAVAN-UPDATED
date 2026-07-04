@@ -1,13 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
+
     const loginForm = document.getElementById('loginForm');
     const errorMessage = document.getElementById('errorMessage');
-const API_URL =
-  window.location.hostname === "localhost"
-    ? "http://localhost:5000"
-    : "https://final-dbms-backend-pavan-updated-ds.vercel.app";
 
+    const API_URL =
+        window.location.hostname === "localhost"
+            ? "http://localhost:5000"
+            : "https://final-dbms-backend-pavan-updated-ds.vercel.app";
 
     loginForm.addEventListener('submit', async (e) => {
+
         e.preventDefault();
 
         const username = document.getElementById('username').value.trim();
@@ -28,7 +30,7 @@ const API_URL =
             });
 
             const data = await res.json();
-            console.log("LOGIN RESPONSE:", data);
+            
 
             if (!res.ok) {
                 errorMessage.style.display = 'block';
@@ -57,3 +59,4 @@ const API_URL =
         }
     });
 });
+
