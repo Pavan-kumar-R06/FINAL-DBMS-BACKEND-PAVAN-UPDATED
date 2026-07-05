@@ -11,7 +11,7 @@ A full-stack **Apartment Management System** developed as a DBMS project to simp
 
 ## Demo
 
-🔗 **https://final-dbms-backend-p-git-b99ef9-pavankumar060905-8109s-projects.vercel.app/**
+🔗 **https://final-dbms-backend-pavan-updated.vercel.app/**
 ## 📌 Features
 
 ### 👨‍💼 Admin
