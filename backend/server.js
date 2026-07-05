@@ -26,15 +26,7 @@ const app = express();
 // const __dirname = path.dirname(__filename);
 
 app.use(cors({
-    origin: function (origin, callback) {
-        // Allow local development and any vercel.app domains
-        if (!origin || origin.startsWith("http://localhost") || origin.endsWith(".vercel.app")) {
-            callback(null, true);
-        } else {
-            callback(new Error("Not allowed by CORS"));
-        }
-    },
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: true,
     credentials: true
 }));
 
