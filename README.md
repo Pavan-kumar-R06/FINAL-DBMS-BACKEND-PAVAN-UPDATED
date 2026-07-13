@@ -4,13 +4,6 @@ A full-stack **Apartment Management System** developed as a DBMS project to simp
 
 ## 🚀 Live Demo
 
-**Application:**  
-:contentReference[oaicite:0]{index=0}
-
----
-
-## Demo
-
 🔗 **https://final-dbms-backend-pavan-updated.vercel.app/**
 ## 📌 Features
 
